@@ -2,6 +2,31 @@
 
 A set of data are with the samples $$(x_i, y_i)$$ where the $$x_i$$ is input vector with feature as $$x_i = (x_{i1}, x_{i2}, ... x_{id})$$ and $$y$$ is the target output. For the regression task, the target output usually is real number $$y \in \mathbb R$$ .
 
+We can tell weather x and y exist linear/nonlinear statistical relation by observing the Correlation where
+
+$$
+Cor (X, Y) = \frac{Cov(X,Y)}{S_XS_Y},~ Cov = \frac{1}{l-1} \sum_{i=1}^{l}(x_i - \bar x) (y_i - \bar y)
+$$
+and the $$S_X, S_Y$$ are the estimates of standard deviations for X observations and Y observations respectively.
+
+**Linear relation:** If Cor(Y,X) is close to 1, it means that we have a positive linear relation (The slop is positive). If Cor(Y,X) is close to -1, it means that we have a negative linear relation.
+
+**Non-linear relation:** If Cor(Y,X) is close to zero, it means that
+we do not have any linear relation.
+
+```
+# example of the correlation calculation
+import pandas as pd
+import numpy as np
+import scipy
+
+X = np.linspace(-5,5,100)
+Y = X**2 + 2* np.random.rand(100)
+scipy.stats.pearsonr(X,Y) # would output a correlation close to 0
+```
+
+
+
 #### **Linear Model:** 
 
 propose the hypothesis on the input and output that trying to fit a linear relationship between them.
