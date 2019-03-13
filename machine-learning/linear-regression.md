@@ -33,5 +33,14 @@ $$
 L(w) = \frac{1}{l} \sum_{i=1}^{l} (w^Tx_i - y_i)^2 = \frac{1}{l}\| Xw - y \|^2
 $$
 
+#### **Training a Model:** 
+
+We try to fit the model to the training data by minimizing the loss, that is, to find a set of weights w, such that minimize the $$L(w)$$, the exact solution can be obtained as 
+
+$$
+w = (X^TX)^{-1} X^Ty
+$$
+Note that inverting a matrix is hard for high-dimensional data!
+
 
 
