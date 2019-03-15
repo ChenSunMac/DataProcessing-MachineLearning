@@ -181,7 +181,7 @@ $$
 where
 
 $$
-TS = \sum_{i=1}^m (y_i - \frac{1}{m} \sum_{i=1}^m  y_i)^2,~~SR = \sum_{i=1}^m (y_i \hat y_i)^2
+TS = \sum_{i=1}^m (y_i - \frac{1}{m} \sum_{i=1}^m  y_i)^2,~~SR = \sum_{i=1}^m (y_i -  \hat y_i)^2
 $$
 
 
