@@ -174,6 +174,17 @@ plt.show()
 
 The R-squared score explains the amount of variation in the model that can be explained by the model, vs the amount of
 variation(also called Coefficient of Determination)
+
+$$
+R^2-score = 1 - \frac{SR}{TS}
+$$
+where
+
+$$
+TS = \sum_{i=1}^m (y_i - \frac{1}{m} \sum_{i=1}^m  y_i)^2,~~SR = \sum_{i=1}^m (y_i \hat y_i)^2
+$$
+
+
 - Best R-squared score is 1, worst is 0
 - High R-squared on training set can mean over-fitting.
 - when R-squared pn the test set is about the same as that on the training set, the model have good predictive power
