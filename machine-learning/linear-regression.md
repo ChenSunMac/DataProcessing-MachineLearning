@@ -180,5 +180,8 @@ variation(also called Coefficient of Determination)
 - Low R-square on both test and trainign sets can mean high bias, or too few parameters in the model.
 
 
+**Multicollinearity:**
 
-
+Multicollinearity occurs when one or more feature is equivalent to a liner combination of other features present in the model. 简单来说，feature 重复。In practice, we may not know how many sub-groups of variables are correlated to one another.
+This causes the coefficient of our regression to not be unique. 从cost function来说则是有多个相同的global minimum
+一般来说predictive power还是稳定的，只是有可能会增加computational effort.
