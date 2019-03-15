@@ -7,14 +7,14 @@ We can tell weather x and y exist linear/nonlinear statistical relation by obser
 $$
 Cor (X, Y) = \frac{Cov(X,Y)}{S_XS_Y},~ Cov = \frac{1}{l-1} \sum_{i=1}^{l}(x_i - \bar x) (y_i - \bar y)
 $$
+
 and the $$S_X, S_Y$$ are the estimates of standard deviations for X observations and Y observations respectively.
 
-**Linear relation:** If Cor(Y,X) is close to 1, it means that we have a positive linear relation (The slop is positive). If Cor(Y,X) is close to -1, it means that we have a negative linear relation.
+**Linear relation:** If Cor\(Y,X\) is close to 1, it means that we have a positive linear relation \(The slop is positive\). If Cor\(Y,X\) is close to -1, it means that we have a negative linear relation.
 
-**Non-linear relation:** If Cor(Y,X) is close to zero, it means that
-we do not have any linear relation.
+**Non-linear relation:** If Cor\(Y,X\) is close to zero, it means that we do not have any linear relation.
 
-```
+```text
 # example of the correlation calculation
 import pandas as pd
 import numpy as np
@@ -25,9 +25,7 @@ Y = X**2 + 2* np.random.rand(100)
 scipy.stats.pearsonr(X,Y) # would output a correlation close to 0
 ```
 
-
-
-#### **Linear Model:** 
+## **Linear Model:**
 
 propose the hypothesis on the input and output that trying to fit a linear relationship between them.
 
@@ -37,7 +35,7 @@ $$
 
 where the weight terms are coefficient of the model and bias b is a unknown constant we need to solve, so in total there will be d+1 parameters. We can also make it even simple that assume a fake feature that always be 1, then the bias can be viewed as a weight as well, that is $$h(x) = w^Tx$$ .
 
-For a group of $$l$$ sample inputs \(aka a test data set\) X, we can rewrite the hypothesis in vector form as 
+For a group of $$l$$ sample inputs \(aka a test data set\) X, we can rewrite the hypothesis in vector form as
 
 $$
 h(X) = Xw, ~~X = \begin{bmatrix}
@@ -48,38 +46,47 @@ h(X) = Xw, ~~X = \begin{bmatrix}
 \end{bmatrix}
 $$
 
-#### **Loss Function:** 
+## **Loss Function:**
 
 How to measure the model quality, how do we know the resulting model fits not only the training data but also the data outside of our sampling regime.
 
-**Mean Squared Error \(MAE\):** 
+**Mean Squared Error \(MAE\):**
 
 $$
 L(w) = \frac{1}{l} \sum_{i=1}^{l} (w^Tx_i - y_i)^2 = \frac{1}{l}\| Xw - y \|^2
 $$
 
-#### **Training a Model:** 
+## **Training a Model:**
 
-##### ** Analytical Solution **
+###  **Analytical Solution** 
+
 We try to fit the model to the training data by minimizing the loss, that is, to find a set of weights w, such that minimize the $$L(w)$$, the exact solution can be obtained in the following procedure:
 
-First the loss funciton can be simplified as $L(w) = (Xw - y)^T(Xw - y)$ and we have
+First the loss funciton can be simplified as $L\(w\) = \(Xw - y\)^T\(Xw - y\)$ and we have
+
 $$
 L(w) = (Xw)^TXw - (Xw)^Ty - y^TXw + y^y
 $$
-where the second term and third term both have dimension of 1, that is the Loss function can be furthre written as 
+
+where the second term and third term both have dimension of 1, that is the Loss function can be furthre written as
+
 $$
 L(w) = (Xw)^TXw - 2y^TXw + y^y
 $$
+
 and by employ the common matrix derivative formulas, we have
+
 $$
 \frac{\partial L(w)}{\partial w} = 2X^TXw - 2X^Ty
 $$
+
 where we can letting the derivative to be zero and we have the final weight w
+
 $$
 w = (X^TX)^{-1} X^Ty
 $$
+
 Note that inverting a matrix is hard for high-dimensional data!
 
-
+![](../.gitbook/assets/norm_dis.png)
 
