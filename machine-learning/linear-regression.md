@@ -88,5 +88,97 @@ $$
 
 Note that inverting a matrix is hard for high-dimensional data!
 
+###  **Maximum Likelihood and Model Estimation** 
+Assume the probability of observing data X and Y, given that there is some true linear relationship is given by Gaussian Distribution.
+This is a good assumption since the sum of arbitrary random variables tends toward a Gaussian by the central limit theorem
+The PDF for Multivariate normal distribution(dimension=n):
+$$
+\mathcal{N}(x| \mu, \Sigma) = \frac{1}{(2\pi)^\frac{n}{2} |\Sigma|^{\frac{1}{2}}} \exp (-\frac{1}{2}(x - \mu)\Sigma^{-1}(x-\mu)^T)  
+$$
+that is,
+$$
+P(y = y_i | x = x_i) \~\exp ~-(\frac{y_i - wX - b}{2\sigma})^2
+$$
+Thus, by assuming the training samples are i.i.d, and the training set denote as $$\mathcal{D}$$, we have for the model with weights $$\theta$$
+$$
+p(D|\theta) = \prod_{i=d}^{m}P(y = y_i | x = x_i)
+$$
+
 ![](../.gitbook/assets/norm_dis.png)
+
+Since the log of the probability is a monotonically increasing function, we can maximize the log of the probability, or
+minimize the negative square error:
+$$
+-\log [p(D|\theta)] = \sum_{i=d}^{m} (\frac{y_i - wX - b}{2\sigma})^2
+$$
+We can do this by setting the derivative of the square error with respect to the coefficients equal to zero:
+$$
+\begin{eqnarray}
+\frac{\partial}{\partial w}\sum_{i=d}^{m} (\frac{y_i - wX - b}{2\sigma})^2 = 0\\
+\frac{\partial}{\partial b}\sum_{i=d}^{m} (\frac{y_i - wX - b}{2\sigma})^2 = 0
+\end{eqnarray}
+$$
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn import datasets, linear_model
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Load the diabetes dataset
+diabetes = datasets.load_diabetes()
+
+
+# Use only one feature
+diabetes_X = diabetes.data[:, np.newaxis, 2]
+
+# Split the data into training/testing sets
+diabetes_X_train = diabetes_X[:-20]
+diabetes_X_test = diabetes_X[-20:]
+
+# Split the targets into training/testing sets
+diabetes_y_train = diabetes.target[:-20]
+diabetes_y_test = diabetes.target[-20:]
+
+# Create linear regression object
+regr = linear_model.LinearRegression()
+
+# Train the model using the training sets
+regr.fit(diabetes_X_train, diabetes_y_train)
+
+# Make predictions using the testing set
+diabetes_y_pred = regr.predict(diabetes_X_test)
+
+# The coefficients, intercept and score
+print('Coefficients: \n', regr.coef_)
+print('Intercept: \n', regr.intercept_)
+print('Score: \n', regr.score(diabetes_X_train, diabetes_y_train)) # R-squared score
+
+# The mean squared error
+print("Mean squared error: %.2f"
+      % mean_squared_error(diabetes_y_test, diabetes_y_pred))
+# Explained variance score: 1 is perfect prediction
+print('Variance score: %.2f' % r2_score(diabetes_y_test, diabetes_y_pred))
+
+# Plot outputs
+plt.scatter(diabetes_X_test, diabetes_y_test,  color='black')
+plt.plot(diabetes_X_test, diabetes_y_pred, color='blue', linewidth=3)
+
+plt.xticks(())
+plt.yticks(())
+
+plt.show()
+```
+
+**R-squared score: **
+
+The R-squared score explains the amount of variation in the model that can be explained by the model, vs the amount of
+variation(also called Coefficient of Determination)
+- Best R-squared score is 1, worst is 0
+- High R-squared on training set can mean over-fitting.
+- when R-squared pn the test set is about the same as that on the training set, the model have good predictive power
+- Low R-square on both test and trainign sets can mean high bias, or too few parameters in the model.
+
+
+
 
