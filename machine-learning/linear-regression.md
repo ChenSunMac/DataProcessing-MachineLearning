@@ -60,8 +60,22 @@ $$
 
 #### **Training a Model:** 
 
-We try to fit the model to the training data by minimizing the loss, that is, to find a set of weights w, such that minimize the $$L(w)$$, the exact solution can be obtained as 
+##### ** Analytical Solution **
+We try to fit the model to the training data by minimizing the loss, that is, to find a set of weights w, such that minimize the $$L(w)$$, the exact solution can be obtained in the following procedure:
 
+First the loss funciton can be simplified as $L(w) = (Xw - y)^T(Xw - y)$ and we have
+$$
+L(w) = (Xw)^TXw - (Xw)^Ty - y^TXw + y^y
+$$
+where the second term and third term both have dimension of 1, that is the Loss function can be furthre written as 
+$$
+L(w) = (Xw)^TXw - 2y^TXw + y^y
+$$
+and by employ the common matrix derivative formulas, we have
+$$
+\frac{\partial L(w)}{\partial w} = 2X^TXw - 2X^Ty
+$$
+where we can letting the derivative to be zero and we have the final weight w
 $$
 w = (X^TX)^{-1} X^Ty
 $$
