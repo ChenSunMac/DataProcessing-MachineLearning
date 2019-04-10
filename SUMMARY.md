@@ -7,6 +7,7 @@
 ## Data Acquisition & Understanding
 
 * [Data Preprocessing](data-acquisition-and-understanding/untitled.md)
+* [Data Quality](data-acquisition-and-understanding/data-quality.md)
 
 ## Machine Learning
 
