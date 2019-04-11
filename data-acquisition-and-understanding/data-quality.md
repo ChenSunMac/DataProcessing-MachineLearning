@@ -55,7 +55,14 @@ Goal: improve performance without hurting accuracy too much
 
 * Numerosity Reduction
   - regression: replace pints with function or smaller number of predictions
-  - clustering:
+  - clustering
+  - sampling : reduce data size
+  
+* Dimensionality Reduction
+  - Wavelet transforms
+  - PCA
+  
+
 
 
 
