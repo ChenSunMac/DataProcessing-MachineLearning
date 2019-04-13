@@ -14,9 +14,11 @@ The discrepancy or error between the distances in the original and projected dat
 1. Based on square of the differences in distances
 
 $$
+
 \begin{equation}
-J = \sum_{i,j}(\|x_i - x_j\| - \|y_i - y _j\|)^2 
+J = \sum_{i,j}(\|x_i - x_j\| - \|y_i - y_j\|)^2 
 \end{equation}
+
 $$
 
 2. Based on fractional error
