@@ -95,10 +95,40 @@ If K = n then this is just leave-one-out validation.
 
 To summarize, there is a bias-variance trade-off associated with the choice of k in k-fold cross-validation. Typically, given these considerations, one performs k-fold cross-validation using k = 5 or k = 10, as these values have been shown empirically to yield test error rate estimates that suffer neither from excessively high bias nor from very high variance.
 
-### Maximum Likelihood Estimation
+### Maximum Likelihood Estimation (MLE)
+
+Assumes that the samples are from a specific distribution with unknown parameters.
+
+Likelihood is the probability that the samples observed come from the given distribution. $$L(\theta|X) = p(X|\theta)$$
+
+We can estimate the paramter $\theta$ by maximizing the likelihood function.
+
+Given a known *distribution function $f(x_i, \theta)$*
+
+Given a *sample data $x = \{x_1, x_2, ... , x_n\}$*
+
+The likelihood can be formulated as
+$$
+\begin{equation}
+L(\theta|x_1, ..., x_n) = \prod_{i=1}^{n}f(x_i|\theta)
+\end{equation}
+$$
+
+MLE = the value of prameter $\theta$ that maximizrs likelihood L is the estimate, can be obtained by finding the derivative of the log-liklihood with respect to the parameter $\theta$ and queating the resulting formula to zero.
 
 
-
-
+**NOTE:** This analytical MLE method requires full data that we can solve the equation exactly.
 
 ### Expectation Maximization (EM)
+If we have missing data, we can use EM to solve for the incomplete data.
+可以用作数据填充，fill out the missing data
+
+**Pros:** Easy to implement, compared to using model fit solutions which often required gradients
+
+**Cons:** Slow to converge, might find local maxima, senesitive to initial guess, bad in high dimensions.
+
+1. **Estimation**: calculate a value for the missing data
+2. **Maximization**: use the data and new values of the missing data to find new estimates using MLE
+
+Repeat steps 1 and 2 until convergence.
+
