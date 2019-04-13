@@ -67,7 +67,23 @@ This can be done internally using the whiten argument or manually using one of t
 - Data is reduced by removing componets along the projection of Gaussian distribution (去噪声)
 - Extract signal is as non-Gaussian as possible, so we can maximize the negative entropy (Gaussian is the maximum entropy distribution)
 
-### Linear Descriminant Analysis (LDA)
+### Linear Descriminant Analysis (LDA), Supervised
+
+If we know the labels of the data (classes) we can use discriminant analysis. The intuition is maximize the between-class scatter while holding fixed within-class scatter.
+
+##### Fisher Linear Discriminant (2-Class LDA)
+
+FLD is a special case of LDA when consider the 2 class problem, we have n samples x each of d dimensions divided into 2 classes, where C1 has n1 samples, C2 has n2 samples.
+
+We want to project these onto a line w such that the projected n points y are divided into 2 classes $y = w^Tx$, have a projection that separates the projected points into 2 classes. 
+
+
+
+##### Generalization of FLD to K classes
+
+Given K classes, we find a projection into (K-1) dimensional subspace, we the problem reduces to find a $(K-1) \times d$ projection matrix such that the projected sample poins are well separated $y = W^Tx$
+
+
 
 
 
