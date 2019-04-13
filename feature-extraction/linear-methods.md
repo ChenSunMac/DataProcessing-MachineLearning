@@ -38,7 +38,36 @@ SVD can be used to obtain PCA, Now $R = A^TA = VS^2V^T$
 - PCA is *optimal* in the sense of minimize sum of square of errors. It mainly rotates the coordinates to find new axes that have the max variance.
 
 - The PCA may not be the best for discriminating between classes. 
+PCA认为一个随机信号最有用的信息体包含在方差里，为此我们需要找到一个方向 $w_{1}$，使得随机信号x在该方向上的投影$w_1^T x$的方差最大化
 
+通过PCA，我们可以得到一列不相关的随机变量,至于这些随机变量是不是真的有意义，那必须根据具体情况具体分析。最常见的例子是，如果x的各分量的单位（量纲）不同，那么一般不能直接套用PCA。比如，若x的几个分量分别代表某国GDP, 人口，失业率，政府清廉指数，这些分量的单位全都不同，而且可以自行随意选取：GDP的单位可以是美元或者日元；人口单位可以是人或者千人或者百万人；失业率可以是百分比或者千分比，等等。对同一个对象（如GDP）选用不同的单位将会改变其数值，从而改变PCA的结果；而依赖“单位选择”的结果显然是没有意义的。 量纲对PCA影响比较大，数据最好应当Normalization.
+
+### Independent Component Analysis (ICA)
+
+PCA uses 2nd order stats (mean and variance)
+
+Linear Projection methods can use higher order stats so they can be used for non-Gaussian distributed data: e.g. ICA
+
+ICA was proposed for blind source separation of signals, it finds projections that are independent but may not be orthogonal.
+
+设有 d 个独立的标量信号源发出信号，其在时刻t发出的声音可表示为 $s_t=(s_{1t},s_{2t},...,s_{dt})$ 。同样地，有 d 个观测器在进行采样，其在时刻 t 记录的信号可表示为：$x_t \in R^d$ 。认为二者满足下式，其中矩阵 A  被称为mixing matrix，反映信道衰减参数：
+$$
+\begin{equation}
+x_t = As_t
+\end{equation}
+$$
+
+显然，有多少个采样时刻，就可以理解为有多少个样本；而信号源的个数可以理解为特征的维数。ICA的目标就是从 x 中提取出 d 个独立成分，也就是找到矩阵unmixing matrix $W = A^{-1}$
+
+
+Typically, ICA is not used for reducing dimensionality but for separating superimposed signals. Since the ICA model does not include a noise term, for the model to be correct, **whitening must be applied**. 
+This can be done internally using the whiten argument or manually using one of the PCA variants.
+
+- Projection pursuit uses a measure of interestingness of a projection
+- Data is reduced by removing componets along the projection of Gaussian distribution (去噪声)
+- Extract signal is as non-Gaussian as possible, so we can maximize the negative entropy (Gaussian is the maximum entropy distribution)
+
+### Linear Descriminant Analysis (LDA)
 
 
 
