@@ -14,7 +14,7 @@ CRC^T = \Lambda_d
 \end{equation}
 $$
 
-The sorted eigenvalues of R $$\lambda\_1 \ge \lambda\_2...\ge \lambda\_d \ge 0$$
+The sorted eigenvalues of R is  $$\lambda\_1 \ge \lambda\_2...\ge \lambda\_d \ge 0$$
 
 _Note:_ we can choose $$m$$ by
 
@@ -24,9 +24,9 @@ r_m = \frac{\sum_{i=1}^m \lambda_i }{\sum_{i=1}^d \lambda_i} \ge \tau
 \end{equation}
 $$
 
-e.g. choosing $\tau = 0.95$ will ensures that 95% of the variance is retained in the new space.
+e.g. choosing $$\tau = 0.95$$ will ensures that 95% of the variance is retained in the new space.
 
-_Note:_ Covariance matrix $R = A^TA$ is $d\times d$ matrix which make the computation too complex, we can use singular value decomposition instead.
+_Note:_ Covariance matrix $$R = A^TA$$ is $$d\times d$$ matrix which make the computation too complex, we can use singular value decomposition instead.
 
 ### Singular Value Decomposition
 
@@ -36,7 +36,7 @@ The matrix A can be decomposed using SVD $$A\_{n\times d} = USV^T$$ where
 * V is a $$n\times d$$ matrix of orthonomal columns $$V^TV = I$$
 * S is a $$d\times d$$ diagonal matrix of singular values
 
-SVD can be used to obtain PCA, Now $R = A^TA = VS^2V^T$
+SVD can be used to obtain PCA, Now $$R = A^TA = VS^2V^T$$
 
 * PCA is _optimal_ in the sense of minimize sum of square of errors. It mainly rotates the coordinates to find new axes that have the max variance.
 * The PCA may not be the best for discriminating between classes. PCA认为一个随机信号最有用的信息体包含在方差里，为此我们需要找到一个方向 $$w\_{1}$$，使得随机信号x在该方向上的投影$w\_1^T x$的方差最大化
@@ -81,5 +81,16 @@ We want to project these onto a line w such that the projected n points y are di
 
 ### Generalization of FLD to K classes
 
-Given K classes, we find a projection into \(K-1\) dimensional subspace, we the problem reduces to find a $$\(K-1\) \times d$$ projection matrix such that the projected sample poins are well separated $y = W^Tx$
+Given K classes, we find a projection into \(K-1\) dimensional subspace, we the problem reduces to find a $$\(K-1\) \times d$$ projection matrix such that the projected sample poins are well separated $$y = W^Tx$$
+
+
+
+
+当样本数量远小于样本的特征维数，样本与样本之间的距离变大使得距离度量失效，使LDA算法中的类内、类间离散度矩阵奇异，不能得到最优的投影方向，在人脸识别领域中表现得尤为突出
+
+- LDA不适合对非高斯分布的样本进行降维
+
+- LDA在样本分类信息依赖方差而不是均值时，效果不好
+
+- LDA可能过度拟合数据
 
