@@ -18,5 +18,7 @@
 
 ## Feature Extraction
 
+* [Feature Extraction & Selection Overview](feature-extraction/feature-extraction-and-selection-overview.md)
 * [Linear Methods](feature-extraction/linear-methods.md)
+* [Nonlinear Methods](feature-extraction/nonlinear-methods.md)
 
