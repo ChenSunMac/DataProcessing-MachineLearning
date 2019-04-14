@@ -21,4 +21,12 @@
 * [Feature Extraction & Selection Overview](feature-extraction/feature-extraction-and-selection-overview.md)
 * [Linear Methods](feature-extraction/linear-methods.md)
 * [Nonlinear Methods](feature-extraction/nonlinear-methods.md)
+* [Feature Selection](feature-extraction/feature-selection.md)
+
+## Classification
+
+* [Classification & Clustering](classification/classification-and-clustering.md)
+* [Density Based Classifiers](classification/density-based-classifiers.md)
+* [Similarity based Classifiers](classification/similarity-based-classifiers.md)
+* [Support Vector Machines](classification/support-vector-machines.md)
 
