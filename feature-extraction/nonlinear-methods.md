@@ -57,4 +57,32 @@ Isomap tries to preserve the distances along the manifold by using geodesic dist
 
 ### Locally Linear Embedding (LLE)
 
+Models the manifold as a union of linear patches, local properties constructed by writing dthe data points $$x_i$$ as a linear combination of their K(i) nearest neighbors in the high dimension.
+
+Then the lower dimensional points $$y_i$$ are expressed as the same linear combination of their corresponding neighbors K(i) in the low dimension space.
+
+
+1. Identify the neightbors K(i) of each points $$x_i$$
+2. Compute weights vectors $$w_i$$ that best linearly reconstruct $$x_i$$ from its neighbors minimizing reconstruction errors
+$$
+\begin{equation}
+\min_w \sum_{i=1}^n \|x_i - \sum_{j\in k(i)} w_{ij} x_j \|^2 
+\end{equation}
+$$
+s.t. $$\sum_j w_{ij} = 1$$, This can be solved using least squares method
+3. Given w find the low dimensional set $y_i$ which is best reconstructed by these weights
+$$
+\begin{equation}
+\min_y \sum_{i} \|y_i - \sum_{j\in k(i)} w_{ij} y_j \|^2 
+\end{equation}
+$$
+
+
+**Comment on ISOMAP:**
+- More computationally efficient than global methods like ISOMAP
+- May be able to represent wider range of manifolds whose local properties are captured by euclidean geometry
+- Doesn't provide a direct form that can be applied to new data (no out of sample extension, since need to construct K neighbors)
+- No estimate of dimensionality unlike PCA where we have a ratio of variance
+- Handles non-uniform sample densities poorly (due to the selection of neighbor, if non-uniform, K is set constant)
+- May miss sample sample points if disconnnected through K neighbors.
 
