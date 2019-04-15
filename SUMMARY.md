@@ -29,5 +29,8 @@
 * [Density Based Classifiers](classification/density-based-classifiers.md)
 * [Similarity based Classifiers](classification/similarity-based-classifiers.md)
 * [Support Vector Machines](classification/support-vector-machines.md)
+* [Decision Trees](classification/decision-trees.md)
+* [Ensemble Methods](classification/ensemble-methods.md)
+* [Random Forests](classification/random-forests.md)
 * [Training, Validation and Error Estimation](classification/training-validation-and-error-estimation.md)
 
