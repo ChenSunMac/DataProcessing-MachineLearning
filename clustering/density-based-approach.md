@@ -8,23 +8,22 @@ Dense Region = neighborhood of distance contains at least m points
 
 Classify the points according to their density:
 
-**Core points :** points in the interior of dense region.
-**Border points :** points on the edge of dense region.
-**Noise points :** points that are not border nor core.
+**Core points :** points in the interior of dense region. **Border points :** points on the edge of dense region. **Noise points :** points that are not border nor core.
 
+* Resistant to Noise
+* Can handle clusters of different shapes and sizes
 
-- Resistant to Noise
-- Can handle clusters of different shapes and sizes
+![](../.gitbook/assets/dbscan.png)
 
+![](../.gitbook/assets/dbscan_2.png)
 
+## When DBSCAN Does NOT Work Well
 
-### When DBSCAN Does NOT Work Well
-- Varying densities
-- High-dimensional data
+* Varying densities
+* High-dimensional data
+* DBSCAN can find clusters of different shapes and sizes.
+* DBSCAN doesn’t handle clusters of varying densities very well.
+* Can be expensive for large data due to neighborhood calculations \(distances\)
 
-
-
-- DBSCAN can find clusters of different shapes and sizes.
-- DBSCAN doesn’t handle clusters of varying densities very well.
-- Can be expensive for large data due to neighborhood calculations (distances)
+![](../.gitbook/assets/dbscan-not-well.png)
 
