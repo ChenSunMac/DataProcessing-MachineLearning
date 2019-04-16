@@ -34,3 +34,11 @@
 * [Random Forests](classification/random-forests.md)
 * [Training, Validation and Error Estimation](classification/training-validation-and-error-estimation.md)
 
+## Clustering
+
+* [Clustering problem](clustering/clustering-problem.md)
+* [Hierarchical Approach](clustering/hierarchical-approach.md)
+* [Partitioning Approach](clustering/partitioning-approach.md)
+* [Density Based Approach](clustering/density-based-approach.md)
+* [Others](clustering/others.md)
+
