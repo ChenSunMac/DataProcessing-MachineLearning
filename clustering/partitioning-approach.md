@@ -65,3 +65,4 @@ Fuzzy C-means has better convergence properties but can still get stuck at local
 
 ## Problem with Partitional Approaches
 
+* 
