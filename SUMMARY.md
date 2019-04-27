@@ -14,6 +14,8 @@
 ## Machine Learning
 
 * [Linear Regression](machine-learning/linear-regression.md)
+* [Linear Classification](machine-learning/linear-classification.md)
+* [Gradient Descent](machine-learning/gradient-descent.md)
 * [Nonlinear Methods](machine-learning/nonlinear-methods.md)
 
 ## Feature Extraction
