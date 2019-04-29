@@ -125,5 +125,5 @@ $$
 
 Combines momentum and individual learning rates. 
 
-
+其实就是Momentum+RMSProp的结合，然后再修正其偏差
 
