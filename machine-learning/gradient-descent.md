@@ -51,6 +51,32 @@ w^t = w^{t-1} - \eta_t g_t
 $$
 Update until convergence
 
+```python
+np.random.seed(42)
+w = np.array([0, 0, 0, 0, 0, 1])
+
+eta= 0.1 # learning rate
+
+n_iter = 100
+batch_size = 4
+loss = np.zeros(n_iter)
+plt.figure(figsize=(12, 5))
+
+for i in range(n_iter):
+    ind = np.random.choice(X_expanded.shape[0], batch_size)
+    loss[i] = compute_loss(X_expanded, y, w)
+    if i % 10 == 0:
+        visualize(X_expanded[ind, :], y[ind], w, loss)
+
+    # TODO:<your code here>
+    grad = compute_grad(X_expanded, y, w)
+    w = w - eta * grad
+
+visualize(X, y, w, loss) #for visualize, pls check HSE-ML week1
+plt.clf()    
+```
+
+
 **Note:** The gradient descent is good but suffers the oscillation of gradient, might not converge or even not stable due to the subset of training data.
 
 ## Momentum
@@ -67,6 +93,34 @@ where $$h(t)$$ is just a weighted sum of gradient descent from all previous iter
 - Tends to move in the same direction as on previous steps, 
 - $$h_t$$ accumulates values along dimensions where gradients have the same sign
 - if $$h_{t-1}$$ and $$g_t$$ are not with the same sign, it dampens the oscillation.
+
+```python
+np.random.seed(42)
+w = np.array([0, 0, 0, 0, 0, 1])
+
+eta = 0.05 # learning rate
+alpha = 0.9 # momentum
+nu = np.zeros_like(w)
+
+n_iter = 100
+batch_size = 4
+loss = np.zeros(n_iter)
+plt.figure(figsize=(12, 5))
+
+for i in range(n_iter):
+    ind = np.random.choice(X_expanded.shape[0], batch_size)
+    loss[i] = compute_loss(X_expanded, y, w)
+    if i % 10 == 0:
+        visualize(X_expanded[ind, :], y[ind], w, loss)
+
+    # TODO:<your code here>
+    grad = compute_grad(X_expanded, y, w)
+    nu = alpha * nu + eta * grad # alpha term dampen the update oscillation
+    w = w - nu
+
+visualize(X, y, w, loss)
+plt.clf()
+```
 
 #### Nesterov Momentum
 $$
@@ -105,10 +159,39 @@ G_j^t = \alpha G_j^{t-1} +  (1-\alpha) g^2_{tj} \\
 w^t_j = w_j^{t-1} - \frac{\eta_t}{\sqrt{G_j^t + \epsilon}} g_{tj} 
 \end{eqnarray}
 $$
-
 added $$\alpha$$ (usually about 0.9) in the gradient update, where the learning rate adapts to latest gradient steps. 
 简单来讲，设置全局学习率之后，每次通过，全局学习率逐参数的除以经过衰减系数控制的历史梯度平方和的平方根，使得每个参数的学习率不同。
 起到的效果是在参数空间更为平缓的方向，会取得更大的进步（因为平缓，所以历史梯度平方和较小，对应学习下降的幅度较小），并且能够使得陡峭的方向变得平缓，从而加快训练速度。
+
+```python
+np.random.seed(42)
+
+w = np.array([0, 0, 0, 0, 0, 1.])
+
+eta = 0.1 # learning rate
+alpha = 0.9 # moving average of gradient norm squared
+g2 = np.zeros_like(w) # g2 intial to be almost zero
+eps = 1e-8
+
+n_iter = 100
+batch_size = 4
+loss = np.zeros(n_iter)
+plt.figure(figsize=(12,5))
+for i in range(n_iter):
+    ind = np.random.choice(X_expanded.shape[0], batch_size)
+    loss[i] = compute_loss(X_expanded, y, w)
+    if i % 10 == 0:
+        visualize(X_expanded[ind, :], y[ind], w, loss)
+
+    # TODO:<your code here>
+    grad = compute_grad(X_expanded, y, w)
+    grad2 = grad ** 2
+    g2 = alpha * g2 + (1-alpha) * grad2
+    w = w - eta * grad / np.sqrt(g2 + eps)
+    
+visualize(X, y, w, loss)
+plt.clf()
+```
 
 
 Similar idea with momentum method
